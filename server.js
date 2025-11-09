@@ -117,11 +117,13 @@ const server = http.createServer(app);
 // ✅ Socket.IO with same CORS
 const io = new Server(server, {
   cors: {
-    origin: ["https://mini-bus-tracker-frontend.vercel.app"],
+    origin: "https://mini-bus-tracker-frontend.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
+  transports: ["websocket", "polling"],
 });
+
 
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/mini-bus-tracker";
